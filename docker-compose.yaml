@@ -1,0 +1,53 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:15-alpine
+    container_name: weather-db
+    environment:
+      POSTGRES_USER: mcp_user
+      POSTGRES_PASSWORD: mcp_pass
+      POSTGRES_DB: weather_mcp
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./docker/init.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - mcp_network
+
+  redis:
+    image: redis:7-alpine
+    container_name: weather-cache
+    ports:
+      - "6379:6379"
+    networks:
+      - mcp_network
+
+  mcp-server:
+    build: 
+      contenxt: .
+      dockerfile: docker/dockerfile
+    container_name: weather-mcp-server
+    depends_on:
+      - postgres
+      - redis
+    environment:
+      - NODE_ENV=production
+      - DATABASE_URL=postgresql://mcp_user:mcp_pass@postgres:5432/weather_mcp
+      - REDIS_URL=redis://weather-cache:6379
+      - WEATHER_API_KEY=${WEATHER_API_KEY}
+    volumes:
+      - ./src/app/src
+      - ./logs:/app/logs
+
+    networks:
+      - mcp_network
+    restart: unless-stopped
+  
+  volumes:  
+    postgres_data:
+    
+  networks:
+    mcp_network:
+      driver: bridge
