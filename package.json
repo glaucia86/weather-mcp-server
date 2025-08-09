@@ -9,9 +9,10 @@
     "build": "tsc",
     "start": "node dist/index.js",
     "test": "jest",
+    "test:weather": "npm run build && node dist/scripts/test-weather.js",
     "docker:up": "docker-compose up -d",
     "docker:down": "docker-compose down",
-    "docker:migrate": "ts-node src/scripts/migrate.ts"
+    "docker:migrate": "npm run build && node dist/scripts/migrate.js"
   },
   "repository": {
     "type": "git",
