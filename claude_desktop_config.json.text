@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "weather-mcp": {
+      "command": "node",
+      "args": ["./dist/index.js"],
+      "cwd": "/path/to/weather-mcp",
+      "env": {
+        "WEATHER_API_KEY": "sua_api_key",
+        "DATABASE_URL": "postgresql://user:pass@localhost:5432/weather_mcp"
+      }
+    }
+  }
+}
