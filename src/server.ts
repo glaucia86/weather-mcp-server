@@ -101,9 +101,15 @@ export class WeatherMCPServer {
       //Conectar ao banco de dados
       await this.database.connect();
 
-      // Iniciar o servidor MCP
-      const transport = new StdioServerTransport();
-      await this.server.connect(transport);
+      // Em ambiente de produção (Docker), não usar StdioServerTransport
+      if (process.env.NODE_ENV === 'production') {
+        logger.info('MCP Server started in production mode (without stdio transport)');
+      } else {
+        // Em desenvolvimento, usar StdioServerTransport
+        const transport = new StdioServerTransport();
+        await this.server.connect(transport);
+        logger.info('MCP Server started with StdioServerTransport');
+      }
 
       logger.info('MCP Server started successfully');
     } catch (error) {
