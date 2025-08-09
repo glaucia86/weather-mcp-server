@@ -75,6 +75,18 @@ export class DatabaseService {
     }
   }
 
+  async healthCheck(): Promise<boolean> {
+    try {
+      const client = await this.pool.connect();
+      await client.query('SELECT 1');
+      client.release();
+      return true;
+    } catch (error) {
+      logger.error('Database health check failed', error);
+      return false;
+    }
+  }
+
   async close(): Promise<void> {
     await this.pool.end();
     logger.info('Database connection closed');
