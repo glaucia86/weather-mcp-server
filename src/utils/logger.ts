@@ -9,8 +9,12 @@ const logDir = process.env.NODE_ENV === "production"
   ? '/app/logs'
   : path.join(__dirname, '../../logs');
 
+// Verificar se está em modo MCP ou silent
+const isSilent = process.env.LOG_LEVEL === 'silent' || process.env.MCP_MODE === 'true';
+
 export const logger = winston.createLogger({
-  level: process.env.LOG_LEVEL || 'info',
+  level: isSilent ? 'silent' : (process.env.LOG_LEVEL || 'info'),
+  silent: isSilent,  // IMPORTANTE: Desativa completamente se true
   format: winston.format.combine(
     winston.format.timestamp(),
     winston.format.errors({ stack: true }),
@@ -22,17 +26,19 @@ export const logger = winston.createLogger({
     // arquivo para erros
     new winston.transports.File({
       filename: path.join(logDir, 'error.log'),
-      level: 'error'
+      level: 'error',
+      silent: isSilent
     }),
     // arquivo para todos os logs
     new winston.transports.File({
-      filename: path.join(logDir, 'combined.log')
+      filename: path.join(logDir, 'combined.log'),
+      silent: isSilent
     })
   ]
 });
 
-// se não for para produção, log no console também
-if (process.env.NODE_ENV !== "production") {
+// NÃO adicionar Console transport se em modo MCP ou produção
+if (process.env.NODE_ENV !== "production" && !isSilent) {
   logger.add(new winston.transports.Console({
     format: winston.format.combine(
       winston.format.colorize(),

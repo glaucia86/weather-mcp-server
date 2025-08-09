@@ -97,26 +97,20 @@ export class WeatherMCPServer {
   }
 
   async start() {
-    try {
-      //Conectar ao banco de dados
-      await this.database.connect();
+  try {
+    // Conectar ao banco de dados
+    await this.database.connect();
 
-      // Em ambiente de produção (Docker), não usar StdioServerTransport
-      if (process.env.NODE_ENV === 'production') {
-        logger.info('MCP Server started in production mode (without stdio transport)');
-      } else {
-        // Em desenvolvimento, usar StdioServerTransport
-        const transport = new StdioServerTransport();
-        await this.server.connect(transport);
-        logger.info('MCP Server started with StdioServerTransport');
-      }
-
-      logger.info('MCP Server started successfully');
-    } catch (error) {
-      logger.error('Error starting MCP Server', error);
-      throw error;
-    }
+    // SEMPRE usar StdioServerTransport para MCP
+    const transport = new StdioServerTransport();
+    await this.server.connect(transport);
+    
+    logger.info('MCP Server started successfully with StdioServerTransport');
+  } catch (error) {
+    logger.error('Error starting MCP Server', error);
+    throw error;
   }
+}
 
   async stop() {
     await this.database.close();

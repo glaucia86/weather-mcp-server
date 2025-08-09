@@ -8,11 +8,10 @@
     "dev": "nodemon --exec \"npm run build && node dist/index.js\" -e ts",
     "build": "tsc",
     "start": "node dist/index.js",
+    "mcp": "node dist/mcp-entry.js",
     "test": "jest",
-    "test:weather": "npm run build && node dist/scripts/test-weather.js",
     "docker:up": "docker-compose up -d",
-    "docker:down": "docker-compose down",
-    "docker:migrate": "npm run build && node dist/scripts/migrate.js"
+    "docker:down": "docker-compose down"
   },
   "repository": {
     "type": "git",
