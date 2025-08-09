@@ -46,8 +46,7 @@ export class DatabaseService {
       data.wind_speed,
       data.description,
       data.icon,
-      data.raw_data,
-      JSON.stringify(data)
+      JSON.stringify(data)  // raw_data como JSON string
     ];
 
     try {
