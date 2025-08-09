@@ -1,4 +1,4 @@
-import { DatabaseService } from "../services/database";
+import { DatabaseService } from "../services/database.js";
 import { logger } from "../utils/logger.js";
 
 export class HealthCheck {

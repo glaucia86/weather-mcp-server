@@ -1,6 +1,6 @@
 import { z } from 'zod';
-import { DatabaseService } from '../services/database';
-import { logger } from '../utils/logger';
+import { DatabaseService } from '../services/database.js';
+import { logger } from '../utils/logger.js';
 
 
 const GetHistorySchema = z.object({

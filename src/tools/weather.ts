@@ -1,7 +1,7 @@
 import { z } from 'zod';
-import { WeatherApiService } from '../services/weatherApi';
-import { DatabaseService } from '../services/database';
-import { logger } from '../utils/logger';
+import { WeatherApiService } from '../services/weatherApi.js';
+import { DatabaseService } from '../services/database.js';
+import { logger } from '../utils/logger.js';
 
 const GetWeatherSchema = z.object({
   city: z.string().describe('Nome da cidade para buscar o clima')

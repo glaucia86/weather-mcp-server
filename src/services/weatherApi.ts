@@ -1,5 +1,5 @@
 import dotenv from 'dotenv';
-import { logger } from '../utils/logger';
+import { logger } from '../utils/logger.js';
 import axios from 'axios';
 
 dotenv.config();
