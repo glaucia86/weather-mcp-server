@@ -16,12 +16,8 @@ import { WeatherApiService } from "./services/weatherApi.js";
 import { WeatherTools } from "./tools/weather.js";
 import { HistoryTools } from "./tools/history.js";
 
-// Debug logging function - only logs when not in MCP stdio mode
+// Silent debug function - only logs to stderr in debug mode
 const debugLog = (message: string, ...args: any[]) => {
-  if (process.env.NODE_ENV !== 'production' && !process.stdout.isTTY) {
-    // Only log to stderr for debugging, not when Claude Desktop is listening
-    return;
-  }
   if (process.env.MCP_DEBUG === 'true') {
     console.error(message, ...args);
   }
@@ -156,7 +152,7 @@ export class WeatherMCPServer {
 
       debugLog('[MCP] Server started successfully');
     } catch (error) {
-      debugLog('[MCP] Error starting server:', error);
+      console.error('[MCP] Error starting server:', error);
       throw error;
     }
   }
