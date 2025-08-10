@@ -1,7 +1,5 @@
 import { z } from 'zod';
 import { DatabaseService } from '../services/database.js';
-import { logger } from '../utils/logger.js';
-
 
 const GetHistorySchema = z.object({
   city: z.string().describe('Nome da cidade'),
@@ -24,7 +22,7 @@ export class HistoryTools {
         data: history,
       }
     } catch (error) {
-      logger.error('Error in getWeatherHistory tool', error);
+      console.error('Error in getWeatherHistory tool', error);
       return {
         success: false,
         error: String(error)
@@ -37,7 +35,23 @@ export class HistoryTools {
       {
         name: 'get_weather_history',
         description: 'Obtém o histórico de clima de uma cidade',
-        inputSchema: GetHistorySchema,
+        inputSchema: {
+          type: "object",
+          properties: {
+            city: {
+              type: "string",
+              description: "Nome da cidade"
+            },
+            limit: {
+              type: "number",
+              minimum: 1,
+              maximum: 100,
+              default: 10,
+              description: "Número de registros"
+            }
+          },
+          required: ["city"]
+        },
         handler: this.getWeatherHistory.bind(this)
       }
     ];
