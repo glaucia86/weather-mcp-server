@@ -1,7 +1,6 @@
 import { z } from 'zod';
 import { WeatherApiService } from '../services/weatherApi.js';
 import { DatabaseService } from '../services/database.js';
-import { logger } from '../utils/logger.js';
 
 const GetWeatherSchema = z.object({
   city: z.string().describe('Nome da cidade para buscar o clima')
@@ -33,7 +32,7 @@ export class WeatherTools {
         data: weather
       };
     } catch (error) {
-      logger.error('Error in getCurrentWeather tool', error);
+      console.error('Error in getCurrentWeather tool', error);
       return {
         success: false,
         error: String(error)
@@ -50,7 +49,7 @@ export class WeatherTools {
         data: forecast,
       };
     } catch (error) {
-      logger.error('Error in getWeatherForecast tool', error);
+      console.error('Error in getWeatherForecast tool', error);
       return {
         success: false,
         error: String(error)
@@ -63,13 +62,38 @@ export class WeatherTools {
       {
         name: 'get_current_weather',
         description: 'Obtém o clima atual de uma cidade específica',
-        inputSchema: GetWeatherSchema,
+        inputSchema: {
+          type: "object",
+          properties: {
+            city: {
+              type: "string",
+              description: "Nome da cidade para buscar o clima"
+            }
+          },
+          required: ["city"]
+        },
         handler: this.getCurrentWeather.bind(this)
       },
       {
         name: 'get_weather_forecast',
         description: 'Obtém a previsão do tempo para os próximos dias',
-        inputSchema: GetForecastSchema,
+        inputSchema: {
+          type: "object",
+          properties: {
+            city: {
+              type: "string",
+              description: "Nome da cidade"
+            },
+            days: {
+              type: "number",
+              minimum: 1,
+              maximum: 5,
+              default: 3,
+              description: "Número de dias de previsão"
+            }
+          },
+          required: ["city"]
+        },
         handler: this.getWeatherForecast.bind(this)
       }
     ]
