@@ -2,16 +2,20 @@
   "name": "weather-mcp-server",
   "version": "1.0.0",
   "description": "A robust Weather MCP Server in TypeScript",
-  "main": "index.js",
+  "main": "dist/mcp-entry.js",
   "type": "module",
   "scripts": {
     "dev": "nodemon --exec \"npm run build && node dist/index.js\" -e ts",
     "build": "tsc",
+    "build:mcp": "tsc && echo MCP entry built",
     "start": "node dist/index.js",
-    "mcp": "node dist/mcp-entry.js",
+    "start:mcp": "node dist/mcp-entry.js",
     "test": "jest",
+    "test:mcp": "npm run build:mcp && node dist/mcp-entry.js",
     "docker:up": "docker-compose up -d",
-    "docker:down": "docker-compose down"
+    "docker:down": "docker-compose down",
+    "clean": "rimraf dist",
+    "prepare:mcp": "npm run clean && npm run build:mcp"
   },
   "repository": {
     "type": "git",
@@ -50,6 +54,7 @@
     "helmet": "^8.1.0",
     "jest": "^30.0.5",
     "nodemon": "^3.1.10",
+    "rimraf": "^6.0.1",
     "ts-node": "^10.9.2",
     "typescript": "^5.9.2"
   }
