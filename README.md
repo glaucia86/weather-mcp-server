@@ -212,12 +212,7 @@ sleep 30
 ### **🧪 Passo 6: Testar Sistema**
 ```bash
 # Testar conectividade
-npm run test:mcp
-
-# Se tudo estiver ok, verá:
-# ✅ Database connected
-# ✅ Weather API working  
-# ✅ MCP Server ready
+npm run start
 ```
 
 ---

@@ -1,11 +1,14 @@
 import { DatabaseService } from "../services/database.js";
-import { logger } from "../utils/logger.js";
+import { CacheService } from "../services/cacheService.js";
+import { logger } from "../utils/simple-logger.js";
 
 export class HealthCheck {
   private database: DatabaseService;
+  private cache: CacheService;
 
-  constructor(database: DatabaseService) {
+  constructor(database: DatabaseService, cache: CacheService) {
     this.database = database;
+    this.cache = cache;
   }
 
   async check(): Promise<any> {
@@ -14,7 +17,13 @@ export class HealthCheck {
       timestamp: new Date().toISOString(),
       services: {
         database: false,
+        cache: false,
         api: false
+      },
+      metrics: {
+        cacheHits: 0,
+        cacheMisses: 0,
+        cacheKeys: 0
       }
     };
 
@@ -28,6 +37,22 @@ export class HealthCheck {
     } catch (error) {
       logger.error('Database health check failed', error);
       health.status = 'unhealthy';
+    }
+
+    // Check cache (Redis) connection
+    try {
+      const cacheHealthy = await this.cache.healthCheck();
+      health.services.cache = cacheHealthy;
+      
+      if (cacheHealthy) {
+        // Get cache statistics
+        const cacheKeys = await this.cache.getKeys('weather:*');
+        health.metrics.cacheKeys = cacheKeys.length;
+      }
+    } catch (error) {
+      logger.error('Cache health check failed', error);
+      health.services.cache = false;
+      // Cache failure doesn't make the whole system unhealthy
     }
 
     // Check external API

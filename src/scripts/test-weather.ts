@@ -1,19 +1,22 @@
 import dotenv from 'dotenv';
 import { WeatherApiService } from '../services/weatherApi.js';
+import { CacheService } from '../services/cacheService.js';
 import { DatabaseService } from '../services/database.js';
-import { logger } from '../utils/logger.js';
+import { logger } from '../utils/simple-logger.js';
 
 dotenv.config();
 
 async function testWeatherSystem() {
-  const weatherApi = new WeatherApiService();
+  const cache = new CacheService();
+  const weatherApi = new WeatherApiService(cache);
   const database = new DatabaseService();
   
   try {
     logger.info('Testing weather system...');
     
-    // Conectar ao banco
+    // Conectar aos serviços
     await database.connect();
+    await cache.connect();
     
     // Testar API do clima
     console.log('Testing weather API...');

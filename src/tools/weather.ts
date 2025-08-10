@@ -1,6 +1,7 @@
 import { z } from 'zod';
 import { WeatherApiService } from '../services/weatherApi.js';
 import { DatabaseService } from '../services/database.js';
+import { CacheService } from '../services/cacheService.js';
 
 const GetWeatherSchema = z.object({
   city: z.string().describe('Nome da cidade para buscar o clima')
@@ -14,10 +15,12 @@ const GetForecastSchema = z.object({
 export class WeatherTools {
   private weatherApi: WeatherApiService;
   private database: DatabaseService;
+  private cache: CacheService;
 
-  constructor(weatherApi: WeatherApiService, database: DatabaseService) {
+  constructor(weatherApi: WeatherApiService, database: DatabaseService, cache: CacheService) {
     this.weatherApi = weatherApi;
     this.database = database;
+    this.cache = cache;
   }
 
   async getCurrentWeather(args: z.infer<typeof GetWeatherSchema>) {
@@ -29,7 +32,8 @@ export class WeatherTools {
 
       return {
         success: true,
-        data: weather
+        data: weather,
+        cached: await this.cache.exists(this.cache.generateKey('weather', args.city))
       };
     } catch (error) {
       console.error('Error in getCurrentWeather tool', error);
@@ -47,9 +51,30 @@ export class WeatherTools {
       return {
         success: true,
         data: forecast,
+        cached: await this.cache.exists(this.cache.generateKey('forecast', args.city, args.days.toString()))
       };
     } catch (error) {
       console.error('Error in getWeatherForecast tool', error);
+      return {
+        success: false,
+        error: String(error)
+      };
+    }
+  }
+
+  async getCacheStatistics() {
+    try {
+      const stats = await this.weatherApi.getCacheStats();
+      
+      return {
+        success: true,
+        data: {
+          ...stats,
+          cacheHealth: await this.cache.healthCheck()
+        }
+      };
+    } catch (error) {
+      console.error('Error getting cache statistics', error);
       return {
         success: false,
         error: String(error)
@@ -95,6 +120,16 @@ export class WeatherTools {
           required: ["city"]
         },
         handler: this.getWeatherForecast.bind(this)
+      },
+      {
+        name: 'get_cache_statistics',
+        description: 'Obtém estatísticas do sistema de cache Redis',
+        inputSchema: {
+          type: "object",
+          properties: {},
+          required: []
+        },
+        handler: this.getCacheStatistics.bind(this)
       }
     ]
   }

@@ -38,10 +38,12 @@
   "homepage": "https://github.com/glaucia86/weather-mcp-server#readme",
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.17.2",
+    "@types/redis": "^4.0.10",
     "axios": "^1.11.0",
     "dotenv": "^17.2.1",
     "express": "^5.1.0",
     "pg": "^8.16.3",
+    "redis": "^5.8.0",
     "winston": "^3.17.0",
     "zod": "^3.25.76"
   },

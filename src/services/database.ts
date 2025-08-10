@@ -1,18 +1,18 @@
-import { Pool } from "pg";
-import { logger } from "../utils/logger.js";
+import * as pg from "pg";
+import { logger } from "../utils/simple-logger.js";
 
 export class DatabaseService {
-  private pool: Pool;
+  private pool: pg.Pool;
 
   constructor() {
-    this.pool = new Pool({
+    this.pool = new pg.Pool({
       connectionString: process.env.DATABASE_URL,
       max: 20,
       idleTimeoutMillis: 30000,
       connectionTimeoutMillis: 2000
     });
 
-    this.pool.on('error', (err) => {
+    this.pool.on('error', (err: any) => {
       logger.error('Unexpected error on idle client', err);
     });
   }

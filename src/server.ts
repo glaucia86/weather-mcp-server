@@ -6,13 +6,15 @@ import {
   } from '@modelcontextprotocol/sdk/types.js'
 import { DatabaseService } from "./services/database.js";
 import { WeatherApiService } from "./services/weatherApi.js";
+import { CacheService } from "./services/cacheService.js";
 import { HistoryTools } from "./tools/history.js";
 import { WeatherTools } from "./tools/weather.js";
-import { logger } from './utils/logger.js';
+import { logger } from './utils/simple-logger.js';
 
 export class WeatherMCPServer {
   private server: Server;
   private database: DatabaseService;
+  private cache: CacheService;
   private weatherApi: WeatherApiService;
   private weatherTools: WeatherTools;
   private historyTools: HistoryTools;
@@ -32,8 +34,9 @@ export class WeatherMCPServer {
     );
 
     this.database = new DatabaseService();
-    this.weatherApi = new WeatherApiService();
-    this.weatherTools = new WeatherTools(this.weatherApi, this.database);
+    this.cache = new CacheService();
+    this.weatherApi = new WeatherApiService(this.cache);
+    this.weatherTools = new WeatherTools(this.weatherApi, this.database, this.cache);
     this.historyTools = new HistoryTools(this.database);
 
     this.registerTools();
@@ -100,12 +103,15 @@ export class WeatherMCPServer {
   try {
     // Conectar ao banco de dados
     await this.database.connect();
+    
+    // Conectar ao cache Redis
+    await this.cache.connect();
 
     // SEMPRE usar StdioServerTransport para MCP
     const transport = new StdioServerTransport();
     await this.server.connect(transport);
     
-    logger.info('MCP Server started successfully with StdioServerTransport');
+    logger.info('MCP Server started successfully with StdioServerTransport and Redis cache');
   } catch (error) {
     logger.error('Error starting MCP Server', error);
     throw error;
@@ -114,6 +120,7 @@ export class WeatherMCPServer {
 
   async stop() {
     await this.database.close();
+    await this.cache.disconnect();
     logger.info('MCP Server stopped successfully');
   }
 }

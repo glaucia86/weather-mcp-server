@@ -12,6 +12,7 @@ import {
   ListPromptsRequestSchema,
 } from "@modelcontextprotocol/sdk/types.js";
 import { DatabaseService } from "./services/database.js";
+import { CacheService } from "./services/cacheService.js";
 import { WeatherApiService } from "./services/weatherApi.js";
 import { WeatherTools } from "./tools/weather.js";
 import { HistoryTools } from "./tools/history.js";
@@ -26,6 +27,7 @@ const debugLog = (message: string, ...args: any[]) => {
 export class WeatherMCPServer {
   private server: Server;
   private database: DatabaseService;
+  private cache: CacheService;
   private weatherApi: WeatherApiService;
   private weatherTools: WeatherTools;
   private historyTools: HistoryTools;
@@ -47,8 +49,9 @@ export class WeatherMCPServer {
     );
 
     this.database = new DatabaseService();
-    this.weatherApi = new WeatherApiService();
-    this.weatherTools = new WeatherTools(this.weatherApi, this.database);
+    this.cache = new CacheService();
+    this.weatherApi = new WeatherApiService(this.cache);
+    this.weatherTools = new WeatherTools(this.weatherApi, this.database, this.cache);
     this.historyTools = new HistoryTools(this.database);
 
     this.registerTools();
@@ -147,10 +150,12 @@ export class WeatherMCPServer {
   async start() {
     try {
       await this.database.connect();
+      await this.cache.connect(); // Conectar ao Redis
+      
       const transport = new StdioServerTransport();
       await this.server.connect(transport);
 
-      debugLog('[MCP] Server started successfully');
+      debugLog('[MCP] Server started successfully with Redis cache');
     } catch (error) {
       console.error('[MCP] Error starting server:', error);
       throw error;
@@ -159,6 +164,7 @@ export class WeatherMCPServer {
 
   async stop() {
     await this.database.close();
+    await this.cache.disconnect(); // Desconectar do Redis
     debugLog('[MCP] Server Stopped');
   }
 }

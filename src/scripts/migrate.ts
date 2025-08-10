@@ -1,6 +1,6 @@
 import dotenv from 'dotenv';
 import { DatabaseService } from '../services/database.js';
-import { logger } from '../utils/logger.js';
+import { logger } from '../utils/simple-logger.js';
 
 // Carregar variáveis de ambiente
 dotenv.config();
