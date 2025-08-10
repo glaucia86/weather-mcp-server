@@ -110,7 +110,7 @@ export class WeatherMCPServer {
       }
     });
 
-    this.server.setRequestHandler(CallToolRequestSchema, async(request) => {
+    this.server.setRequestHandler(CallToolRequestSchema, async (request: any) => {
       const { name, arguments: args } = request.params;
 
       const tool = this.tools.get(name);
