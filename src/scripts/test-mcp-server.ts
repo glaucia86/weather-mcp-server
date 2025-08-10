@@ -1,7 +1,7 @@
 import { spawn } from 'child_process';
 
 async function testMCPServer() {
-  console.log('🔧 Testando MCP Server localmente...\n');
+  console.log('Testando MCP Server localmente...\n');
 
   // Definir variáveis de ambiente
   const env = {
@@ -14,7 +14,7 @@ async function testMCPServer() {
     MCP_DEBUG: "true"
   };
 
-  console.log('📝 Iniciando servidor MCP...');
+  console.log('Iniciando servidor MCP...');
   const child = spawn('node', ['dist/mcp-entry.js'], { 
     env,
     stdio: ['pipe', 'pipe', 'pipe']
@@ -29,12 +29,12 @@ async function testMCPServer() {
 
   child.stderr.on('data', (data) => {
     errorOutput += data.toString();
-    console.log('📊 Debug:', data.toString().trim());
+    console.log('Debug:', data.toString().trim());
   });
 
   // Enviar mensagem de teste para listar ferramentas
   setTimeout(() => {
-    console.log('\n📡 Enviando request para listar tools...');
+    console.log('\nEnviando request para listar tools...');
     const request = {
       jsonrpc: '2.0',
       id: 1,
@@ -47,13 +47,13 @@ async function testMCPServer() {
 
   // Aguardar resposta
   setTimeout(() => {
-    console.log('\n✅ Resposta do servidor:');
+    console.log('\n Resposta do servidor:');
     if (output.trim()) {
       try {
         const response = JSON.parse(output.trim());
-        console.log('📊 Tools encontradas:', response.result?.tools?.length || 0);
+        console.log('Tools encontradas:', response.result?.tools?.length || 0);
         response.result?.tools?.forEach((tool: any) => {
-          console.log(`  🔧 ${tool.name}: ${tool.description}`);
+          console.log(`  ${tool.name}: ${tool.description}`);
         });
       } catch (e) {
         console.log('Raw output:', output);

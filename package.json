@@ -12,7 +12,6 @@
     "start:mcp": "node dist/mcp-entry.js",
     "test": "jest",
     "test:mcp": "npm run build:mcp && node dist/mcp-entry.js",
-    "benchmark": "npm run build && node dist/scripts/benchmark-cache.js",
     "migrate": "npm run build && node dist/scripts/migrate.js",
     "test:manual": "npm run build && node dist/scripts/test-mcp-server.js",
     "docker:up": "docker-compose up -d",
