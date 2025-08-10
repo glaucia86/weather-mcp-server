@@ -1,15 +1,20 @@
-import { Server } from "@modelcontextprotocol/sdk/server/index";
-import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio";
+import dotenv from 'dotenv';
+
+// Load environment variables
+dotenv.config();
+
+import { Server } from "@modelcontextprotocol/sdk/server/index.js";
+import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 import {
   CallToolRequestSchema,
   ListToolsRequestSchema,
   ListResourcesRequestSchema,
   ListPromptsRequestSchema,
-} from "@modelcontextprotocol/sdk/types";
-import { DatabaseService } from "./services/database";
-import { WeatherApiService } from "./services/weatherApi";
-import { WeatherTools } from "./tools/weather";
-import { HistoryTools } from "./tools/history";
+} from "@modelcontextprotocol/sdk/types.js";
+import { DatabaseService } from "./services/database.js";
+import { WeatherApiService } from "./services/weatherApi.js";
+import { WeatherTools } from "./tools/weather.js";
+import { HistoryTools } from "./tools/history.js";
 
 export class WeatherMCPServer {
   private server: Server;
