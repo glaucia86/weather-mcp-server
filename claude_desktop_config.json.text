@@ -2,11 +2,14 @@
   "mcpServers": {
     "weather-mcp": {
       "command": "node",
-      "args": ["./dist/index.js"],
-      "cwd": "/path/to/weather-mcp",
+      "args": ["C:/Users/seu-caminho-aqui/weather-mcp-server/dist/mcp-entry.js"],
       "env": {
-        "WEATHER_API_KEY": "sua_api_key",
-        "DATABASE_URL": "postgresql://user:pass@localhost:5432/weather_mcp"
+        "WEATHER_API_KEY": "sua-open-weather-api-aqui",
+        "DATABASE_URL": "postgresql://mcp_user:mcp_pass@localhost:5432/weather_mcp",
+        "REDIS_URL": "redis://localhost:6379",
+        "NODE_ENV": "production",
+        "LOG_LEVEL": "error",
+        "MCP_DEBUG": "false"
       }
     }
   }
