@@ -13,13 +13,9 @@
 ![Redis](https://img.shields.io/badge/Redis-DC382D?style=for-the-badge&logo=redis&logoColor=white)
 ![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)
 
-<br>
-
 ![Claude AI](https://img.shields.io/badge/Claude_AI-FF6B35?style=for-the-badge&logo=anthropic&logoColor=white)
 ![OpenWeatherMap](https://img.shields.io/badge/OpenWeatherMap-FFA500?style=for-the-badge&logo=openweathermap&logoColor=white)
 ![MCP](https://img.shields.io/badge/Model_Context_Protocol-000000?style=for-the-badge&logo=protocol&logoColor=white)
-
-<br>
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=for-the-badge)](http://makeapullrequest.com)
