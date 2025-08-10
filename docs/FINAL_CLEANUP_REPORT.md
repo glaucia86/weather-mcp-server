@@ -18,12 +18,17 @@ A limpeza completa do projeto foi realizada com sucesso, removendo todos os arqu
   - `database.ts`: Serviço de banco legacy  
   - `weatherApi.ts`: Serviço de API legacy
 
-### Limpeza Final - Scripts Desnecessários
+### Limpeza Final - Arquivos Legacy Desnecessários
 - **src/scripts/**: Reduzido de 7 para 3 arquivos essenciais
   - ❌ `test-weather.ts`: Script de teste obsoleto
   - ❌ `test-cache.ts`: Script de cache obsoleto
   - ❌ `test-redis-connection.ts`: Teste de Redis obsoleto
   - ❌ `test-cache-performance.ts`: Teste de performance obsoleto
+- **src/types/**: Diretório completo removido
+  - ❌ `globals.d.ts`: Declarações de tipos não utilizadas
+- **src/utils/**: Diretório completo removido
+  - ❌ `logger-simple.ts`: Logger legacy não utilizado
+  - ❌ `simple-logger.ts`: Logger simples não utilizado
 
 ## Arquivos Mantidos ✅
 

@@ -49,17 +49,10 @@ src/
 ├── models/                   # MODELOS (Legacy Support)
 │   └── Weather.ts
 │
-├── scripts/                  # UTILITÁRIOS (3 arquivos essenciais)
-│   ├── benchmark-cache.ts    # Benchmark de performance
-│   ├── migrate.ts           # Migração de banco
-│   └── test-mcp-server.ts   # Teste manual MCP
-│
-├── types/                    # TIPOS
-│   └── globals.d.ts
-│
-└── utils/                    # UTILITÁRIOS
-    ├── logger-simple.ts
-    └── simple-logger.ts
+└── scripts/                  # UTILITÁRIOS (3 arquivos essenciais)
+    ├── benchmark-cache.ts    # Benchmark de performance
+    ├── migrate.ts           # Migração de banco
+    └── test-mcp-server.ts   # Teste manual MCP
 ```
 
 ## Arquivos de Configuração
