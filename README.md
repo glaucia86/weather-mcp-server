@@ -450,7 +450,7 @@ Este projeto está licenciado sob a **Licença MIT** - veja o arquivo [LICENSE](
 <div align="center">
 
 ### **Glaucia Lemos**
-*Senior Cloud Advocate at Microsoft | MVP | GDE*
+*Software AI Engineer | ex-Microsoft*
 
 [![GitHub](https://img.shields.io/badge/GitHub-glaucia86-181717?style=for-the-badge&logo=github)](https://github.com/glaucia86)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-glaucia--lemos-0077B5?style=for-the-badge&logo=linkedin)](https://www.linkedin.com/in/glaucialemos/)
