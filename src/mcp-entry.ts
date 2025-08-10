@@ -1,7 +1,7 @@
 import dotenv from 'dotenv';
 
-// Load environment variables
-dotenv.config();
+// Load environment variables with quiet mode
+dotenv.config({ quiet: true });
 
 import { Server } from "@modelcontextprotocol/sdk/server/index.js";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
@@ -15,6 +15,17 @@ import { DatabaseService } from "./services/database.js";
 import { WeatherApiService } from "./services/weatherApi.js";
 import { WeatherTools } from "./tools/weather.js";
 import { HistoryTools } from "./tools/history.js";
+
+// Debug logging function - only logs when not in MCP stdio mode
+const debugLog = (message: string, ...args: any[]) => {
+  if (process.env.NODE_ENV !== 'production' && !process.stdout.isTTY) {
+    // Only log to stderr for debugging, not when Claude Desktop is listening
+    return;
+  }
+  if (process.env.MCP_DEBUG === 'true') {
+    console.error(message, ...args);
+  }
+};
 
 export class WeatherMCPServer {
   private server: Server;
@@ -59,7 +70,7 @@ export class WeatherMCPServer {
       this.tools.set(tool.name, tool);
     });
 
-    console.error(`[MCP] Registered ${this.tools.size} tools`);
+    debugLog(`[MCP] Registered ${this.tools.size} tools`);
   }
 
   private setupHandlers() {
@@ -118,7 +129,7 @@ export class WeatherMCPServer {
         throw new Error(`Tool ${name} not found`);
       }
 
-      console.error(`[MCP] Calling tool ${name}`);
+      debugLog(`[MCP] Calling tool ${name}`);
 
       try {
         const result = await tool.handler(args);
@@ -131,7 +142,7 @@ export class WeatherMCPServer {
           ]
         };
       } catch (error) {
-        console.error(`[MCP] Error calling tool ${name}:`, error);
+        debugLog(`[MCP] Error calling tool ${name}:`, error);
         throw error;
       }
     });
@@ -143,16 +154,16 @@ export class WeatherMCPServer {
       const transport = new StdioServerTransport();
       await this.server.connect(transport);
 
-      console.error('[MCP] Server started successfully');
+      debugLog('[MCP] Server started successfully');
     } catch (error) {
-      console.error('[MCP] Error starting server:', error);
+      debugLog('[MCP] Error starting server:', error);
       throw error;
     }
   }
 
   async stop() {
     await this.database.close();
-    console.error('[MCP] Server Stopped');
+    debugLog('[MCP] Server Stopped');
   }
 }
 
@@ -163,23 +174,23 @@ async function main() {
     await server.start();
 
     process.on('SIGINT', async() => {
-      console.error('[MCP] Received SIGINT, shutting down...');
+      debugLog('[MCP] Received SIGINT, shutting down...');
       await server.stop();
       process.exit(0);
     });
 
     process.on('SIGTERM', async () => {
-      console.error('[MCP] Received SIGTERM, shutting down...');
+      debugLog('[MCP] Received SIGTERM, shutting down...');
       await server.stop();
       process.exit(0);
     });
   } catch (error) {
-    console.error('[MCP] Failed to start server:', error);
+    debugLog('[MCP] Failed to start server:', error);
     process.exit(1); 
   }
 }
 
 main().catch((error) => {
-  console.error('[MCP] Unhandled error:', error);
+  debugLog('[MCP] Unhandled error:', error);
   process.exit(1);
 });
