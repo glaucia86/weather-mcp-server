@@ -149,10 +149,15 @@ graph TB
 - ✅ Princípios SOLID aplicados
 - ✅ Servidor MCP refatorado e funcionando perfeitamente
 
-### ⚠️ **Arquivos de Transição:**
-- 📁 `services/` - contém implementações legacy (gradualmente sendo removidas)
-- 📁 `tools/` - ferramentas antigas ainda presentes
-- 📄 `server.ts` - servidor antigo mantido para referência
+### 🧹 **Limpeza de Código Legacy (Agosto 2025):**
+- ✅ **Removido** `src/server.ts` - servidor antigo não utilizado
+- ✅ **Removido** `src/tools/` - ferramentas migradas para Controllers
+  - ~~`tools/weather.ts`~~ → `presentation/controllers/WeatherController.ts`
+  - ~~`tools/history.ts`~~ → `presentation/controllers/HistoryController.ts`
+- ✅ **Testado** aplicação após remoção - funcionando perfeitamente
+- ⚠️ **Mantido** `src/services/` temporariamente (usado por scripts de teste)
+
+
 
 ### 🎯 **Comandos Funcionais:**
 ```bash
@@ -474,13 +479,8 @@ weather-mcp-server/
 │   │   ├── 📄 database.ts                 # Serviço de database legacy
 │   │   └── 📄 weatherApi.ts               # Serviço de API legacy
 │   │
-│   ├── 📁 tools/                            # ⚠️ Legacy (em transição)
-│   │   ├── 📄 history.ts                  # Ferramentas de histórico legacy
-│   │   └── 📄 weather.ts                  # Ferramentas de clima legacy
-│   │
-│   ├── 📄 index.ts                          # 🚀 Entrada principal (Clean Architecture)
-│   ├── 📄 mcp-entry.ts                      # 🔌 Entrada específica MCP
-│   └── 📄 server.ts                         # ⚠️ Servidor legacy (em transição)
+│   ├──  index.ts                          # 🚀 Entrada principal (Clean Architecture)
+│   └── 📄 mcp-entry.ts                      # 🔌 Entrada específica MCP
 │
 ├── 📁 docker/                                # 🐳 Configurações Docker
 │   ├── 📄 Dockerfile                        # 📦 Imagem do aplicativo
