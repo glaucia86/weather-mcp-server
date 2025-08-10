@@ -1,28 +1,40 @@
-import { WeatherApiService } from '../src/services/weatherApi';
-import { DatabaseService } from '../src/services/database';
+import { DIContainer } from '../src/infrastructure/di/DIContainer.js';
+import { GetCurrentWeatherUseCase } from '../src/application/usecases/GetCurrentWeatherUseCase.js';
+import { GetWeatherHistoryUseCase } from '../src/application/usecases/GetWeatherHistoryUseCase.js';
+import { IWeatherRepository } from '../src/domain/repositories/IRepositories.js';
 
-describe('Weather Service Tests', () => {
-  let weatherApi: WeatherApiService;
-  let database: DatabaseService;
+describe('Weather System Tests', () => {
+  let container: DIContainer;
+  let getCurrentWeatherUseCase: GetCurrentWeatherUseCase;
+  let getWeatherHistoryUseCase: GetWeatherHistoryUseCase;
+  let weatherRepository: IWeatherRepository;
 
-  beforeAll(() => {
-    weatherApi = new WeatherApiService();
-    database = new DatabaseService();
+  beforeAll(async () => {
+    container = DIContainer.getInstance();
+    container.register();
+    await container.initialize();
+    
+    getCurrentWeatherUseCase = container.get<GetCurrentWeatherUseCase>('GetCurrentWeatherUseCase');
+    getWeatherHistoryUseCase = container.get<GetWeatherHistoryUseCase>('GetWeatherHistoryUseCase');
+    weatherRepository = container.get<IWeatherRepository>('IWeatherRepository');
   });
 
   afterAll(async () => {
-    await database.close();
+    if (container) {
+      await container.shutdown();
+    }
   });
 
-  test('should fetch weather data', async () => {
-    const weather = await weatherApi.getCurrentWeather('London');
+  test('should fetch weather data through use case', async () => {
+    const result = await getCurrentWeatherUseCase.execute({ city: 'London' });
 
-    expect(weather).toHaveProperty('city');
-    expect(weather).toHaveProperty('temperature');
-    expect(weather.city).toBe('London');
+    expect(result.success).toBe(true);
+    expect(result.data).toHaveProperty('city');
+    expect(result.data).toHaveProperty('temperature');
+    expect(result.data?.city).toBe('London');
   });
 
-  test('should save weather to database', async () => {
+  test('should save and retrieve weather history', async () => {
     const mockWeather = {
       city: 'Test City',
       country: 'Test Country',
@@ -35,10 +47,15 @@ describe('Weather Service Tests', () => {
       icon: '01d'
     };
 
-    await database.saveWeatherData(mockWeather);
-    const history = await database.getWeatherHistory('Test City', 1);
+    await weatherRepository.saveWeatherData(mockWeather);
+    
+    const historyResult = await getWeatherHistoryUseCase.execute({ 
+      city: 'Test City', 
+      limit: 1 
+    });
 
-    expect(history).toHaveLength(1);
-    expect(history[0].city).toBe('Test City');
+    expect(historyResult.success).toBe(true);
+    expect(historyResult.data).toHaveLength(1);
+    expect(historyResult.data?.[0].city).toBe('Test City');
   });
 });
