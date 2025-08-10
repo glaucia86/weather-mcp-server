@@ -12,15 +12,12 @@
 ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white)
 ![Redis](https://img.shields.io/badge/Redis-DC382D?style=for-the-badge&logo=redis&logoColor=white)
 ![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)
-
 ![Claude AI](https://img.shields.io/badge/Claude_AI-FF6B35?style=for-the-badge&logo=anthropic&logoColor=white)
 ![OpenWeatherMap](https://img.shields.io/badge/OpenWeatherMap-FFA500?style=for-the-badge&logo=openweathermap&logoColor=white)
 ![MCP](https://img.shields.io/badge/Model_Context_Protocol-000000?style=for-the-badge&logo=protocol&logoColor=white)
-
 ![Clean Architecture](https://img.shields.io/badge/Clean_Architecture-00D4AA?style=for-the-badge&logo=architecture&logoColor=white)
 ![SOLID](https://img.shields.io/badge/SOLID_Principles-FF6B6B?style=for-the-badge&logo=solid&logoColor=white)
 ![DI](https://img.shields.io/badge/Dependency_Injection-45B7D1?style=for-the-badge&logo=injection&logoColor=white)
-
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=for-the-badge)](http://makeapullrequest.com)
 
