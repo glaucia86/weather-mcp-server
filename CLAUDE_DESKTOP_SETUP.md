@@ -33,13 +33,13 @@ Copie e cole esta configuração no arquivo `claude_desktop_config.json`:
   "mcpServers": {
     "weather-mcp": {
       "command": "node",
-      "args": ["C:/Users/glauc/OneDrive/Documents/Labs/weather-mcp-server/dist/mcp-entry.js"],
+      "args": ["C:/Users/seu-caminho-aqui/weather-mcp-server/dist/mcp-entry.js"],
       "env": {
-        "WEATHER_API_KEY": "57e0b31962ae34800b8c4142095d57fa",
+        "WEATHER_API_KEY": "sua-open-weather-api-aqui",
         "DATABASE_URL": "postgresql://mcp_user:mcp_pass@localhost:5432/weather_mcp",
         "REDIS_URL": "redis://localhost:6379",
         "NODE_ENV": "production",
-        "LOG_LEVEL": "info",
+        "LOG_LEVEL": "error",
         "MCP_DEBUG": "false"
       }
     }
