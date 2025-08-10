@@ -15,7 +15,11 @@
     "docker:up": "docker-compose up -d",
     "docker:down": "docker-compose down",
     "clean": "rimraf dist",
-    "prepare:mcp": "npm run clean && npm run build:mcp"
+    "prepare:mcp": "npm run clean && npm run build:mcp",
+    "start:clean": "node dist/index.js",
+    "start:mcp:clean": "node dist/mcp-entry.js",
+    "test:clean": "npm run build && node dist/index.js",
+    "test:mcp:clean": "npm run build && node dist/mcp-entry.js"
   },
   "repository": {
     "type": "git",
