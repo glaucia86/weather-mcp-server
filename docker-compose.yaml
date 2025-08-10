@@ -34,7 +34,9 @@ services:
       - NODE_ENV=production
       - DATABASE_URL=postgresql://mcp_user:mcp_pass@postgres:5432/weather_mcp
       - REDIS_URL=redis://redis:6379
-      - WEATHER_API_KEY=${WEATHER_API_KEY}
+      - WEATHER_API_KEY=57e0b31962ae34800b8c4142095d57fa
+      - PORT=3000
+      - LOG_LEVEL=info
     volumes:
       - ./logs:/app/logs
     networks:
