@@ -92,8 +92,8 @@ graph TB
     subgraph "🔧 Application Layer (Use Cases)"
         C --> E[🌤️ Get Weather Use Case]
         C --> F[🔮 Get Forecast Use Case]  
-        C --> G[� Get Cache Stats Use Case]
-        D --> H[� Get History Use Case]
+        C --> G[📊 Get Cache Stats Use Case]
+        D --> H[📚 Get History Use Case]
     end
     
     subgraph "🏛️ Domain Layer"
@@ -105,13 +105,13 @@ graph TB
     
     subgraph "🏗️ Infrastructure Layer (Adapters)"
         E --> L[🌍 OpenWeather API Repository]
-        E --> M[�️ PostgreSQL Repository]
+        E --> M[🗄️ PostgreSQL Repository]
         E --> N[⚡ Redis Cache Repository]
         F --> L
         F --> N
         H --> M
         L --> O[🌤️ OpenWeatherMap API]
-        M --> P[� PostgreSQL Database]
+        M --> P[🗄️ PostgreSQL Database]
         N --> Q[⚡ Redis Cache]
     end
 ```
@@ -122,7 +122,7 @@ graph TB
 
 #### **📁 Estrutura das Camadas:**
 
-| 🏷️ **Camada** | 🎯 **Responsabilidade** | � **Componentes** |
+| 🏷️ **Camada** | 🎯 **Responsabilidade** | 📦 **Componentes** |
 |:-------------:|:-----------------------:|:------------------:|
 | **🎮 Presentation** | Interface externa, Controllers | MCP Server, Controllers |
 | **🔧 Application** | Casos de uso, Regras de aplicação | Use Cases, DTOs |
@@ -138,6 +138,30 @@ graph TB
 | **L** - Liskov Substitution | Implementações intercambiáveis via contratos | Flexibilidade total |
 | **I** - Interface Segregation | Interfaces pequenas e específicas | Sem dependências desnecessárias |
 | **D** - Dependency Inversion | Dependências injetadas via abstrações | Testabilidade e desacoplamento |
+
+---
+
+## 🔄 **Status Atual do Projeto**
+
+### ✅ **Clean Architecture Implementada:**
+- ✅ Nova estrutura em `domain/`, `application/`, `infrastructure/`, `presentation/`
+- ✅ Dependency Injection Container funcionando
+- ✅ Princípios SOLID aplicados
+- ✅ Servidor MCP refatorado e funcionando perfeitamente
+
+### ⚠️ **Arquivos de Transição:**
+- 📁 `services/` - contém implementações legacy (gradualmente sendo removidas)
+- 📁 `tools/` - ferramentas antigas ainda presentes
+- 📄 `server.ts` - servidor antigo mantido para referência
+
+### 🎯 **Comandos Funcionais:**
+```bash
+# ✅ Use estes comandos (testados e funcionando):
+npm start              # Servidor principal com Clean Architecture
+npm run start:mcp      # MCP Server para Claude Desktop
+npm run test:mcp       # Testar servidor MCP
+npm run build          # Compilar projeto TypeScript
+```
 
 ---
 
@@ -257,11 +281,11 @@ npm run test:mcp
 | **macOS** | `~/Library/Application Support/Claude/claude_desktop_config.json` |
 | **Linux** | `~/.config/Claude/claude_desktop_config.json` |
 
-### **⚙️ Configuração para Windows (Clean Architecture):**
+### **⚙️ Configuração para Windows:**
 ```json
 {
   "mcpServers": {
-    "weather-mcp-clean": {
+    "weather-mcp": {
       "command": "node",
       "args": ["C:/Users/SEU_USUARIO/caminho/para/weather-mcp-server/dist/mcp-entry.js"],
       "env": {
@@ -278,11 +302,11 @@ npm run test:mcp
 }
 ```
 
-### **⚙️ Configuração para macOS/Linux (Clean Architecture):**
+### **⚙️ Configuração para macOS/Linux:**
 ```json
 {
   "mcpServers": {
-    "weather-mcp-clean": {
+    "weather-mcp": {
       "command": "node",
       "args": ["/caminho/completo/para/weather-mcp-server/dist/mcp-entry.js"],
       "env": {
@@ -361,33 +385,33 @@ npm run test:mcp
 
 ---
 
-## 🛠️ **Scripts e Comandos - Arquitetura Refatorada**
+## 🛠️ **Scripts e Comandos Disponíveis**
 
 | 🎯 **Finalidade** | 💻 **Comando** | 📋 **Descrição** |
 |:-----------------:|:--------------:|:----------------:|
-| **🔨 Build Clean** | `npm run build` | Compila nova estrutura TypeScript → JavaScript |
-| **🚀 Start Clean** | `npm run start:clean` | Servidor principal com Clean Architecture |
-| **🎮 MCP Clean** | `npm run start:mcp:clean` | Servidor MCP otimizado (Claude Desktop) |
-| **🧪 Test Clean** | `npm run test:clean` | Testa aplicação refatorada completa |
-| **🔧 Test MCP Clean** | `npm run test:mcp:clean` | Testa servidor MCP refatorado |
+| **🚀 Start Server** | `npm start` | Servidor principal com Clean Architecture |
+| **🎮 MCP Server** | `npm run start:mcp` | Servidor MCP para Claude Desktop |
+| **🔨 Build** | `npm run build` | Compila TypeScript → JavaScript |
+| **🧪 Test MCP** | `npm run test:mcp` | Testa servidor MCP |
+| **🔧 Build MCP** | `npm run build:mcp` | Compila com mensagem MCP específica |
 | **👨‍💻 Dev Mode** | `npm run dev` | Desenvolvimento com hot-reload |
 | **🧹 Clean** | `npm run clean` | Remove builds anteriores |
 | **🐳 Docker Up** | `docker-compose up -d` | Inicia PostgreSQL + Redis |
 | **🐳 Docker Down** | `docker-compose down` | Para todos os containers |
 | **📊 Logs** | `docker logs weather-db` | Ver logs do PostgreSQL |
 
-### **🎯 Comparação Comandos (Antes vs Depois):**
+### **🎯 Scripts de Teste e Utilitários:**
 
-| 📋 **Funcionalidade** | ❌ **Comando Antigo** | ✅ **Comando Novo** | 🎯 **Melhoria** |
-|:---------------------:|:---------------------:|:-------------------:|:---------------:|
-| **Servidor Principal** | `npm start` | `npm run start:clean` | Clean Architecture |
-| **Servidor MCP** | `npm run start:mcp` | `npm run start:mcp:clean` | SOLID + Performance |
-| **Testes** | `npm run test:mcp` | `npm run test:mcp:clean` | Estrutura refatorada |
-| **Build MCP** | `npm run build:mcp` | `npm run build` | Unificado e otimizado |
+| 🧪 **Script** | 💻 **Comando** | 📋 **Descrição** |
+|:-------------:|:--------------:|:----------------:|
+| **Cache Performance** | `node dist/scripts/benchmark-cache.js` | Benchmark do sistema de cache |
+| **Test Redis** | `node dist/scripts/test-redis-connection.js` | Testar conexão Redis |
+| **Test Cache** | `node dist/scripts/test-cache.js` | Testar operações de cache |
+| **Test Weather** | `node dist/scripts/test-weather.js` | Testar API meteorológica |
 
 ---
 
-## 🏗️ **Estrutura Detalhada do Projeto - Clean Architecture**
+## 🏗️ **Estrutura Completa do Projeto**
 
 ```
 weather-mcp-server/
@@ -396,7 +420,7 @@ weather-mcp-server/
 │   ├── 🏛️ domain/                            # Camada de Domínio (Business Rules)
 │   │   ├── 📁 entities/                      # Entidades do domínio
 │   │   │   └── 📄 Weather.ts                # Modelos de dados meteorológicos
-│   │   └── � repositories/                  # Contratos/Interfaces (Ports)
+│   │   └── 📁 repositories/                  # Contratos/Interfaces (Ports)
 │   │       └── 📄 IRepositories.ts          # Interfaces dos repositórios
 │   │
 │   ├── 🔧 application/                        # Camada de Aplicação (Use Cases)
@@ -409,52 +433,78 @@ weather-mcp-server/
 │   ├── 🏗️ infrastructure/                    # Camada de Infraestrutura (Adapters)
 │   │   ├── 📁 logger/                        # Sistema de logging unificado
 │   │   │   └── 📄 Logger.ts                 # Logger com interface bem definida
-│   │   ├── � repositories/                  # Implementações dos repositórios
-│   │   │   ├── � PostgreSQLWeatherRepository.ts   # Adapter: PostgreSQL
+│   │   ├── 📁 repositories/                  # Implementações dos repositórios
+│   │   │   ├── 📄 PostgreSQLWeatherRepository.ts   # Adapter: PostgreSQL
 │   │   │   ├── 📄 RedisCacheRepository.ts          # Adapter: Redis
 │   │   │   └── 📄 OpenWeatherMapApiRepository.ts   # Adapter: OpenWeather API
 │   │   └── 📁 di/                           # Dependency Injection
-│   │       └── � DIContainer.ts            # Container de injeção de dependências
+│   │       └── 📄 DIContainer.ts            # Container de injeção de dependências
 │   │
 │   ├── 🎮 presentation/                       # Camada de Apresentação (Controllers)
 │   │   ├── 📁 controllers/                   # Controllers (Adapters)
 │   │   │   ├── 📄 WeatherController.ts      # Controller: Operações clima
-│   │   │   └── � HistoryController.ts      # Controller: Histórico
+│   │   │   └── 📄 HistoryController.ts      # Controller: Histórico
 │   │   └── 📁 servers/                      # Servidores
-│   │       └── � WeatherMCPServer.ts       # Servidor MCP principal
+│   │       └── 📄 WeatherMCPServer.ts       # Servidor MCP principal
 │   │
-│   ├── 📄 index.ts                           # � Entrada principal (servidor completo)
-│   ├── 📄 mcp-entry.ts                      # 🔌 Entrada específica MCP (Claude Desktop)
+│   ├── 🛡️ middleware/                        # Middleware de Segurança
+│   │   └── 📄 security.ts                   # Rate limiting, validação de entrada
 │   │
-│   └── 📁 legacy-backup/                     # � Backup dos arquivos antigos
-│       ├── 📄 server.ts.old                 # Servidor anterior (backup)
-│       ├── 📄 weatherApi.ts.old            # API anterior (backup)
-│       └── � [...outros arquivos antigos]  # Demais backups
+│   ├── 📊 monitoring/                        # Monitoramento e Health Checks
+│   │   └── 📄 health.ts                     # Health check service
+│   │
+│   ├── 🧪 scripts/                          # Scripts de Teste e Utilitários
+│   │   ├── 📄 benchmark-cache.ts           # Benchmark performance cache
+│   │   ├── 📄 migrate.ts                   # Scripts de migração DB
+│   │   ├── 📄 test-cache-performance.ts    # Teste performance cache
+│   │   ├── 📄 test-cache.ts               # Testes Redis básicos
+│   │   ├── 📄 test-mcp-server.ts          # Testes servidor MCP
+│   │   ├── 📄 test-redis-connection.ts    # Teste conexão Redis
+│   │   └── 📄 test-weather.ts             # Testes API meteorológica
+│   │
+│   ├── 📝 types/                            # Definições TypeScript
+│   │   └── 📄 globals.d.ts                 # Tipos globais
+│   │
+│   ├── 🔧 utils/                            # Utilitários
+│   │   ├── 📄 logger-simple.ts            # Logger simplificado
+│   │   └── 📄 simple-logger.ts            # Logger para MCP
+│   │
+│   ├── 📁 services/                         # ⚠️ Legacy (em transição)
+│   │   ├── 📄 cacheService.ts             # Serviço de cache legacy
+│   │   ├── 📄 database.ts                 # Serviço de database legacy
+│   │   └── 📄 weatherApi.ts               # Serviço de API legacy
+│   │
+│   ├── 📁 tools/                            # ⚠️ Legacy (em transição)
+│   │   ├── 📄 history.ts                  # Ferramentas de histórico legacy
+│   │   └── 📄 weather.ts                  # Ferramentas de clima legacy
+│   │
+│   ├── 📄 index.ts                          # 🚀 Entrada principal (Clean Architecture)
+│   ├── 📄 mcp-entry.ts                      # 🔌 Entrada específica MCP
+│   └── 📄 server.ts                         # ⚠️ Servidor legacy (em transição)
 │
 ├── 📁 docker/                                # 🐳 Configurações Docker
 │   ├── 📄 Dockerfile                        # 📦 Imagem do aplicativo
 │   └── 📄 init.sql                          # 🗄️ Schema inicial PostgreSQL
 │
-├── 📁 dist/                                  # 📦 Código compilado (gerado automaticamente)
-│   ├── 📄 index.js                          # Entrada principal compilada
-│   ├── 📄 mcp-entry.js                      # Entrada MCP compilada
-│   └── 📁 [...estrutura espelhada]          # Estrutura completa compilada
-│
+├── 📁 dist/                                  # 📦 Código compilado (gerado)
 ├── 📁 tests/                                 # 🧪 Testes automatizados
 ├── 📁 logs/                                  # 📝 Arquivos de log (gerados)
+├── 📁 docs/                                  # 📚 Documentação técnica
+│   ├── 📄 CACHE_OPTIMIZATION_REPORT.md     # Relatório de otimização cache
+│   ├── 📄 CLAUDE_DESKTOP_SETUP.md          # Guia configuração Claude
+│   ├── 📄 CLEAN_ARCHITECTURE_MIGRATION_REPORT.md # Relatório migração
+│   ├── 📄 DATABASE_ANALYSIS_REPORT.md      # Análise do banco de dados
+│   └── 📄 REFACTORING_DOCUMENTATION.md     # Documentação refatoração
 │
-├── 📄 package.json                           # 📋 Dependências e scripts npm
+├── 📄 package.json                           # 📋 Dependências e scripts
 ├── 📄 tsconfig.json                         # ⚙️ Configuração TypeScript
 ├── 📄 docker-compose.yaml                   # 🐳 Orquestração containers
-├── 📄 .env                                  # 🔐 Variáveis de ambiente (você cria)
-├── 📄 .env.example                          # 📋 Exemplo de configuração
-│
-├── 📄 CLEAN_ARCHITECTURE_MIGRATION_REPORT.md  # 📊 Relatório da migração
-├── 📄 REFACTORING_DOCUMENTATION.md           # 📖 Documentação da refatoração
+├── 📄 .env                                  # 🔐 Variáveis ambiente (criar)
+├── 📄 .env.example                          # 📋 Exemplo configuração
 └── 📄 README.md                             # 📖 Este arquivo
 ```
 
-### **🎯 Benefícios da Nova Arquitetura:**
+### **🎯 Benefícios da Arquitetura Atual:**
 
 | 🏆 **Benefício** | 📊 **Melhoria** | 💡 **Impacto Prático** |
 |:----------------:|:----------------:|:----------------------:|
@@ -463,7 +513,7 @@ weather-mcp-server/
 | **🔄 Flexibilidade** | ⬆️ 70% | Fácil trocar implementações (BD, APIs) |
 | **📦 Modularidade** | ⬆️ 80% | Responsabilidades bem definidas |
 | **🚀 Escalabilidade** | ⬆️ 75% | Adicionar funcionalidades sem complexidade |
-| **👥 Time Collaboration** | ⬆️ 60% | Equipe pode trabalhar em paralelo |
+| **👥 Team Collaboration** | ⬆️ 60% | Equipe pode trabalhar em paralelo |
 
 ---
 
@@ -816,11 +866,11 @@ RATE_LIMIT_MAX=50         # 50 requisições
 
 ## 🏗️ **Refatoração: Clean Architecture + SOLID** 
 
-### **🎯 Transformação Arquitetural**
+### **🎯 Transformação Arquitetural Concluída**
 
 Este projeto passou por uma **refatoração completa** aplicando **Clean Architecture** e **princípios SOLID**, resultando em um código mais limpo, testável e maintível.
 
-### **� Antes vs Depois:**
+### **📊 Antes vs Depois:**
 
 | 📏 **Métrica** | ❌ **Antes (Legacy)** | ✅ **Depois (Clean)** | 🎯 **Melhoria** |
 |:--------------:|:---------------------:|:---------------------:|:---------------:|
@@ -831,52 +881,36 @@ Este projeto passou por uma **refatoração completa** aplicando **Clean Archite
 | **Linhas por Arquivo** | 200+ | <100 | ⬇️ **50% menos** |
 | **Responsabilidades** | Múltiplas | Única | ✅ **SRP aplicado** |
 
-### **🎯 Principais Melhorias:**
+### **🎯 Principais Melhorias Realizadas:**
 
 #### **✅ 1. Eliminação de Duplicações**
 - **Antes**: Classe `WeatherMCPServer` duplicada em 2 arquivos
-- **Depois**: Servidor único e centralizado
+- **Depois**: Servidor único e centralizado em `presentation/servers/`
 
-#### **✅ 2. Separação de Responsabilidades**
+#### **✅ 2. Separação de Responsabilidades (SRP)**
 - **Antes**: Classes fazendo múltiplas tarefas
-- **Depois**: Uma responsabilidade por classe (SRP)
+- **Depois**: Uma responsabilidade por classe
 
-#### **✅ 3. Injeção de Dependências**
+#### **✅ 3. Injeção de Dependências (DIP)**
 - **Antes**: Dependências criadas internamente
-- **Depois**: Dependências injetadas via container DI
+- **Depois**: Dependências injetadas via `DIContainer`
 
 #### **✅ 4. Interfaces e Abstrações**
 - **Antes**: Acoplamento direto com implementações
-- **Depois**: Dependências via interfaces (DIP)
+- **Depois**: Dependências via interfaces
 
-### **📁 Arquivos de Documentação da Refatoração:**
+### **📁 Documentação Técnica Disponível:**
 
-| �📄 **Arquivo** | 📋 **Conteúdo** |
+| 📄 **Arquivo** | 📋 **Conteúdo** |
 |:--------------:|:---------------:|
-| `CLEAN_ARCHITECTURE_MIGRATION_REPORT.md` | Relatório técnico completo da migração |
-| `REFACTORING_DOCUMENTATION.md` | Documentação detalhada com exemplos |
-| `src/legacy-backup/` | Backup seguro dos arquivos originais |
-
-### **🚀 Como Usar a Nova Arquitetura:**
-
-```bash
-# 🆕 Comandos da nova arquitetura
-npm run start:clean          # Servidor com Clean Architecture
-npm run start:mcp:clean      # MCP Server refatorado
-npm run test:clean           # Testes da nova estrutura
-npm run test:mcp:clean       # Testes MCP refatorado
-```
-
-### **🔄 Rollback (se necessário):**
-
-```bash
-# Se precisar voltar à versão anterior
-cp src/legacy-backup/* src/
-npm run build
-npm start
-```
+| `docs/CLEAN_ARCHITECTURE_MIGRATION_REPORT.md` | Relatório técnico completo da migração |
+| `docs/REFACTORING_DOCUMENTATION.md` | Documentação detalhada com exemplos de código |
+| `docs/CACHE_OPTIMIZATION_REPORT.md` | Análise completa do sistema de cache |
+| `docs/DATABASE_ANALYSIS_REPORT.md` | Relatório de análise dos dados |
 
 ---
+
+## 📄 **Licença**
 
 Este projeto está licenciado sob a **Licença MIT** - veja o arquivo [LICENSE](LICENSE) para detalhes.
 
