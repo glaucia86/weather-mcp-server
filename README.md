@@ -1,4 +1,4 @@
-# 🌤️ Weather MCP Server
+# 🌤️ Weather MCP Server - TypeScript/Docker
 
 <div align="center">
 
