@@ -2,7 +2,7 @@
   "name": "weather-mcp-server",
   "version": "1.0.0",
   "description": "A robust Weather MCP Server in TypeScript",
-  "main": "dist/mcp-entry.js",
+  "main": "dist/index.js",
   "type": "module",
   "scripts": {
     "dev": "nodemon --exec \"npm run build && node dist/index.js\" -e ts",
