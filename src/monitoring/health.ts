@@ -1,14 +1,17 @@
-import { DatabaseService } from "../services/database.js";
-import { CacheService } from "../services/cacheService.js";
-import { logger } from "../utils/simple-logger.js";
+import { DIContainer } from "../infrastructure/di/DIContainer.js";
+import { IWeatherRepository, ICacheRepository } from "../domain/repositories/IRepositories.js";
+import { ILogger } from "../infrastructure/logger/Logger.js";
 
 export class HealthCheck {
-  private database: DatabaseService;
-  private cache: CacheService;
+  private weatherRepository: IWeatherRepository;
+  private cacheRepository: ICacheRepository;
+  private logger: ILogger;
 
-  constructor(database: DatabaseService, cache: CacheService) {
-    this.database = database;
-    this.cache = cache;
+  constructor() {
+    const container = DIContainer.getInstance();
+    this.weatherRepository = container.get<IWeatherRepository>('IWeatherRepository');
+    this.cacheRepository = container.get<ICacheRepository>('ICacheRepository');
+    this.logger = container.get<ILogger>('ILogger');
   }
 
   async check(): Promise<any> {
@@ -29,28 +32,28 @@ export class HealthCheck {
 
     try {
       // Check database connection
-      const dbHealthy = await this.database.healthCheck();
+      const dbHealthy = await this.weatherRepository.healthCheck();
       health.services.database = dbHealthy;
       if (!dbHealthy) {
         health.status = 'unhealthy';
       }
     } catch (error) {
-      logger.error('Database health check failed', error);
+      this.logger.error('Database health check failed', error);
       health.status = 'unhealthy';
     }
 
     // Check cache (Redis) connection
     try {
-      const cacheHealthy = await this.cache.healthCheck();
+      const cacheHealthy = await this.cacheRepository.healthCheck();
       health.services.cache = cacheHealthy;
       
       if (cacheHealthy) {
         // Get cache statistics
-        const cacheKeys = await this.cache.getKeys('weather:*');
+        const cacheKeys = await this.cacheRepository.getKeys('weather:*');
         health.metrics.cacheKeys = cacheKeys.length;
       }
     } catch (error) {
-      logger.error('Cache health check failed', error);
+      this.logger.error('Cache health check failed', error);
       health.services.cache = false;
       // Cache failure doesn't make the whole system unhealthy
     }
@@ -59,7 +62,7 @@ export class HealthCheck {
     try {
       health.services.api = true;
     } catch (error) {
-      logger.error('External API health check failed', error);
+      this.logger.error('External API health check failed', error);
       health.status = 'unhealthy';
     }
 
