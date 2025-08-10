@@ -1,8 +1,8 @@
-# 🌤️ Weather MCP Server - Clean Architecture + SOLID
+# 🌤️ Weather MCP Server - Clean Architecture + SOLID + Docker + Redis
 
 <div align="center">
 
-### **Servidor MCP de Clima com Clean Architecture para Claude Desktop** 
+### **Servidor MCP de Clima com Clean Architecture para Claude Desktop - Ready to Production** 
 *Claude AI transformado em estação meteorológica usando princípios SOLID*
 
 <br>
@@ -153,18 +153,6 @@ graph TB
 - ✅ **4 MCP Tools**: Registradas e funcionando no Claude Desktop
 - ✅ **Database + Cache**: PostgreSQL + Redis operacionais
 
-### 🧹 **Limpeza de Código Legacy Concluída (Agosto 2025):**
-- ✅ **Removidos completamente**:
-  - ~~`src/server.ts`~~ → Migrado para Clean Architecture
-  - ~~`src/tools/weather.ts`~~ → `presentation/controllers/WeatherController.ts` 
-  - ~~`src/tools/history.ts`~~ → `presentation/controllers/HistoryController.ts`
-  - ~~`src/services/`~~ → Substituído por repositories e use cases
-  - ~~`src/types/`~~ → Tipos movidos para domain entities
-  - ~~`src/utils/`~~ → Logger centralizado em infrastructure
-- ✅ **Aplicação testada**: Funcionando 100% após todas as remoções
-- ✅ **Docker rebuild**: Containers atualizados e operacionais
-- ✅ **Dados verificados**: 24+ registros no PostgreSQL, cache Redis ativo
-
 ### 🎯 **MCP Tools Funcionais:**
 | 🔧 **Tool** | 📋 **Função** | ✅ **Status** |
 |:-----------:|:-------------:|:-------------:|
@@ -290,6 +278,10 @@ sleep 30
 ```bash
 # Testar servidor MCP
 npm run test:mcp
+
+ou
+
+npm run start
 ```
 
 ---

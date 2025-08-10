@@ -1,5 +1,27 @@
 node_modules
 dist
-.env
-EXPLANATION/
 logs
+
+# 🔐 Arquivos com dados sensíveis - NUNCA commitar
+.env
+.env.*
+!.env.example
+
+# 🐳 Docker overrides que podem conter dados sensíveis
+docker-compose.override.yml
+docker-compose.prod.yml
+
+# 📝 Arquivos temporários e de sistema
+EXPLANATION/
+.DS_Store
+Thumbs.db
+*.log
+*.tmp
+*.temp
+
+# 🔑 Chaves e certificados
+*.key
+*.pem
+*.crt
+*.p12
+*.pfx
