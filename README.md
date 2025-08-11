@@ -1,12 +1,5 @@
-# 🌤️ Weather MCP Server - Clean Architecture Edition [Docker + Redis]
-
-<div align="center">
-
 <!-- CI/CD Status Badges -->
 [![CI/CD Pipeline](https://github.com/glaucia86/weather-mcp-server/actions/workflows/deploy.yml/badge.svg)](https://github.com/glaucia86/weather-mcp-server/actions/workflows/deploy.yml)
-[![Security Scan](https://github.com/glaucia86/weather-mcp-server/actions/workflows/deploy.yml/badge.svg?event=push&job=security)](https://github.com/glaucia86/weather-mcp-server/actions/workflows/deploy.yml)
-[![Tests](https://github.com/glaucia86/weather-mcp-server/actions/workflows/deploy.yml/badge.svg?event=push&job=test)](https://github.com/glaucia86/weather-mcp-server/actions/workflows/deploy.yml)
-[![Build](https://github.com/glaucia86/weather-mcp-server/actions/workflows/deploy.yml/badge.svg?event=push&job=build)](https://github.com/glaucia86/weather-mcp-server/actions/workflows/deploy.yml)
 
 <!-- Project Quality Badges -->
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/glaucia86/weather-mcp-server?style=flat-square&logo=github&logoColor=white)
@@ -17,10 +10,9 @@
 ![GitHub language count](https://img.shields.io/github/languages/count/glaucia86/weather-mcp-server?style=flat-square&logo=typescript&logoColor=white)
 ![GitHub top language](https://img.shields.io/github/languages/top/glaucia86/weather-mcp-server?style=flat-square&logo=typescript&logoColor=white)
 
-### **Servidor MCP de Clima com Clean Architecture para Claude Desktop - Production Ready** 
-*Claude AI transformado em estação meteorológica profissional usando princípios SOLID*
+# 🌤️ Weather MCP Server - Clean Architecture Edition [Docker + Redis]
 
-<br>
+<div align="center">
 
 ![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)
 ![Node.js](https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white)
@@ -36,6 +28,13 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=for-the-badge)](https://github.com/glaucia86/weather-mcp-server/pulls)
 
+<div align="center">
+
+### **Servidor MCP de Clima com Clean Architecture para Claude Desktop - Production Ready** 
+*Claude AI transformado em estação meteorológica profissional usando princípios SOLID*
+
+<br>
+
 **🎉 VERSÃO ATUAL: 2.0.0 - Clean Architecture Completa**
 *✅ Refatoração concluída • ✅ Zero legacy code • ✅ Production ready*
 
@@ -45,25 +44,27 @@
 |:------------|:-----------|:--------------|
 | **Build** | [![Build Status](https://github.com/glaucia86/weather-mcp-server/actions/workflows/deploy.yml/badge.svg)](https://github.com/glaucia86/weather-mcp-server/actions/workflows/deploy.yml) | TypeScript compilation + Docker build |
 | **Tests** | [![Tests](https://github.com/glaucia86/weather-mcp-server/actions/workflows/deploy.yml/badge.svg?event=push&job=test)](https://github.com/glaucia86/weather-mcp-server/actions/workflows/deploy.yml) | Unit tests + Integration tests |
-| 🔒 **Security** | [![Security](https://github.com/glaucia86/weather-mcp-server/actions/workflows/deploy.yml/badge.svg?event=push&job=security)](https://github.com/glaucia86/weather-mcp-server/actions/workflows/deploy.yml) | Trivy vulnerability scan + npm audit |
-| 🐳 **Docker** | ![Docker](https://img.shields.io/badge/Docker-Ready-blue?style=flat-square&logo=docker) | Multi-stage build otimizado |
-| 🚀 **Deploy** | ![Deployment](https://img.shields.io/badge/Deploy-Automated-green?style=flat-square&logo=github-actions) | CI/CD pipeline automatizado |
+| **Security** | [![Security](https://github.com/glaucia86/weather-mcp-server/actions/workflows/deploy.yml/badge.svg?event=push&job=security)](https://github.com/glaucia86/weather-mcp-server/actions/workflows/deploy.yml) | Trivy vulnerability scan + npm audit |
+| **Docker** | ![Docker](https://img.shields.io/badge/Docker-Ready-blue?style=flat-square&logo=docker) | Multi-stage build otimizado |
+| **Deploy** | ![Deployment](https://img.shields.io/badge/Deploy-Automated-green?style=flat-square&logo=github-actions) | CI/CD pipeline automatizado |
+
+</div>
 
 ### 🔄 **CI/CD Pipeline**
 
 Este projeto implementa um pipeline CI/CD completo com GitHub Actions:
 
 ```yaml
-🔍 Lint & Type Check → 🧪 Tests → 🏗️ Build → 🔒 Security → 🐳 Docker → 🚀 Deploy
+Lint & Type Check → Tests → Build → Security → Docker → Deploy
 ```
 
 **Pipeline Stages:**
-- **🔍 Lint & Type Check**: ESLint + TypeScript compilation check
-- **🧪 Tests**: Unit tests com mocks + Integration tests com PostgreSQL/Redis
-- **🏗️ Build**: TypeScript compilation + artifact generation  
-- **🔒 Security**: Trivy vulnerability scanner + npm audit
-- **🐳 Docker**: Multi-stage build + push to GitHub Container Registry
-- **🚀 Deploy**: Automated deployment para staging/production
+- **Lint & Type Check**: ESLint + TypeScript compilation check
+- **Tests**: Unit tests com mocks + Integration tests com PostgreSQL/Redis
+- **Build**: TypeScript compilation + artifact generation  
+- **Security**: Trivy vulnerability scanner + npm audit
+- **Docker**: Multi-stage build + push to GitHub Container Registry
+- **Deploy**: Automated deployment para staging/production
 
 **Comandos de Teste Locais:**
 ```bash
@@ -71,8 +72,6 @@ npm run test:unit        # Tests unitários (sem dependências)
 npm run test:integration # Tests de integração (requer Docker)
 npm run test:ci          # Tests para CI com coverage
 ```
-
-</div>
 
 ---
 
