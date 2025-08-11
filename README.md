@@ -55,16 +55,16 @@
 Este projeto implementa um pipeline CI/CD completo com GitHub Actions:
 
 ```yaml
-Lint & Type Check → Tests → Build → Security → Docker → Deploy
+🔍 Lint & Type Check → 🧪 Tests → 🏗️ Build → 🔒 Security → 🐳 Docker → 🚀 Deploy
 ```
 
 **Pipeline Stages:**
-- **Lint & Type Check**: ESLint + TypeScript compilation check
-- **Tests**: Unit tests com mocks + Integration tests com PostgreSQL/Redis
-- **Build**: TypeScript compilation + artifact generation  
-- **Security**: Trivy vulnerability scanner + npm audit
-- **Docker**: Multi-stage build + push to GitHub Container Registry
-- **Deploy**: Automated deployment para staging/production
+- **🔍 Lint & Type Check**: ESLint + TypeScript compilation check
+- **🧪 Tests**: Unit tests com mocks + Integration tests com PostgreSQL/Redis
+- **🏗️ Build**: TypeScript compilation + artifact generation  
+- **🔒 Security**: Trivy vulnerability scanner + npm audit
+- **🐳 Docker**: Multi-stage build + push to GitHub Container Registry
+- **🚀 Deploy**: Automated deployment para staging/production
 
 **Comandos de Teste Locais:**
 ```bash
