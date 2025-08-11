@@ -19,7 +19,7 @@
 ![SOLID](https://img.shields.io/badge/SOLID_Principles-FF6B6B?style=for-the-badge&logo=solid&logoColor=white)
 ![DI](https://img.shields.io/badge/Dependency_Injection-45B7D1?style=for-the-badge&logo=injection&logoColor=white)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=for-the-badge)](http://makeapullrequest.com)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=for-the-badge)](https://github.com/glaucia86/weather-mcp-server/pulls)
 
 **🎉 VERSÃO ATUAL: 2.0.0 - Clean Architecture Completa**
 *✅ Refatoração concluída • ✅ Zero legacy code • ✅ Production ready*
