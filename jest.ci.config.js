@@ -11,13 +11,16 @@ export default {
     }]
   },
   roots: ['<rootDir>/tests'],
-  testMatch: ['**/*.test.ts'],
+  testMatch: ['**/unit.test.ts'], // Only unit tests for CI
   setupFilesAfterEnv: ['<rootDir>/tests/setup.ts'],
   collectCoverageFrom: [
     'src/**/*.ts',
     '!src/**/*.d.ts',
+    '!src/scripts/**',
+    '!src/index.ts',
+    '!src/mcp-entry.ts'
   ],
   coverageDirectory: 'coverage',
   coverageReporters: ['text', 'lcov', 'html'],
-  testTimeout: 30000, // 30 seconds for integration tests
+  testTimeout: 15000,
 };

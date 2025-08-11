@@ -25,3 +25,5 @@ Thumbs.db
 *.crt
 *.p12
 *.pfx
+
+coverage/
