@@ -28,6 +28,8 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=for-the-badge)](https://github.com/glaucia86/weather-mcp-server/pulls)
 
+</div>
+
 ### **Servidor MCP de Clima com Clean Architecture para Claude Desktop - Production Ready** 
 *Claude AI transformado em estação meteorológica profissional usando princípios SOLID*
 
@@ -283,9 +285,9 @@ npm run test:manual
 ```
 
 ### **⚠️ IMPORTANTE:**
-- 🔄 **Substitua** `/caminho/completo/para/` pelo seu caminho real
-- 🗝️ **Substitua** `SUA_API_KEY_OPENWEATHERMAP` pela sua chave OpenWeatherMap
-- 🔄 **Feche COMPLETAMENTE** o Claude Desktop e reabra após salvar
+- **Substitua** `/caminho/completo/para/` pelo seu caminho real
+- **Substitua** `SUA_API_KEY_OPENWEATHERMAP` pela sua chave OpenWeatherMap
+- **Feche COMPLETAMENTE** o Claude Desktop e reabra após salvar
 
 ---
 
@@ -446,12 +448,13 @@ sleep 30
 ## 📊 **Status Atual - Agosto 2025**
 
 ### ✅ **Clean Architecture 100% Implementada:**
-- ✅ **Arquitetura Completa**: `domain/`, `application/`, `infrastructure/`, `presentation/`
-- ✅ **Dependency Injection**: Container DI funcionando perfeitamente
-- ✅ **Princípios SOLID**: Aplicados rigorosamente
-- ✅ **4 MCP Tools**: Registradas e funcionando no Claude Desktop
-- ✅ **Database + Cache**: PostgreSQL + Redis operacionais
-- ✅ **Zero Legacy Code**: Arquivos desnecessários removidos
+
+- **Arquitetura Completa**: `domain/`, `application/`, `infrastructure/`, `presentation/`
+- **Dependency Injection**: Container DI funcionando perfeitamente
+- **Princípios SOLID**: Aplicados rigorosamente
+- **4 MCP Tools**: Registradas e funcionando no Claude Desktop
+- **Database + Cache**: PostgreSQL + Redis operacionais
+- **Zero Legacy Code**: Arquivos desnecessários removidos
 
 ### 🎯 **MCP Tools Funcionais:**
 | 🔧 **Tool** | 📋 **Função** | ✅ **Status** |
