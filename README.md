@@ -1,5 +1,3 @@
-[![CI/CD Pipeline](https://github.com/glaucia86/weather-mcp-server/actions/workflows/deploy.yml/badge.svg)](https://github.com/glaucia86/weather-mcp-server/actions/workflows/deploy.yml)
-
 <!-- Project Quality Badges -->
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/glaucia86/weather-mcp-server?style=flat-square&logo=github&logoColor=white)
 ![GitHub issues](https://img.shields.io/github/issues/glaucia86/weather-mcp-server?style=flat-square&logo=github&logoColor=white)
