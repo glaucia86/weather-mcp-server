@@ -1,4 +1,3 @@
-<!-- CI/CD Status Badges -->
 [![CI/CD Pipeline](https://github.com/glaucia86/weather-mcp-server/actions/workflows/deploy.yml/badge.svg)](https://github.com/glaucia86/weather-mcp-server/actions/workflows/deploy.yml)
 
 <!-- Project Quality Badges -->
