@@ -23,18 +23,28 @@ export class GetCurrentWeatherUseCase {
 
   async execute(request: GetCurrentWeatherRequest): Promise<GetCurrentWeatherResponse> {
     try {
-      this.logger.info(`Getting current weather for ${request.city}`);
+      // Validate input
+      if (!request.city || request.city.trim().length === 0) {
+        this.logger.warn('Invalid city parameter provided');
+        return {
+          success: false,
+          error: 'City parameter is required and cannot be empty'
+        };
+      }
+
+      const city = request.city.trim();
+      this.logger.info(`Getting current weather for ${city}`);
       
-      const weather = await this.weatherApiRepo.getCurrentWeather(request.city);
+      const weather = await this.weatherApiRepo.getCurrentWeather(city);
       
       // Save to database for history
       await this.weatherRepo.saveWeatherData(weather);
       
       // Check if data was from cache
-      const cacheKey = this.cacheRepo.generateKey('weather', request.city);
+      const cacheKey = this.cacheRepo.generateKey('weather', city);
       const cached = await this.cacheRepo.exists(cacheKey);
 
-      this.logger.info(`Weather data retrieved successfully for ${request.city}`, { cached });
+      this.logger.info(`Weather data retrieved successfully for ${city}`, { cached });
       
       return {
         success: true,
