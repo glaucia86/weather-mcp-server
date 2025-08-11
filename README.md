@@ -28,8 +28,6 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=for-the-badge)](https://github.com/glaucia86/weather-mcp-server/pulls)
 
-<div align="center">
-
 ### **Servidor MCP de Clima com Clean Architecture para Claude Desktop - Production Ready** 
 *Claude AI transformado em estação meteorológica profissional usando princípios SOLID*
 
@@ -47,8 +45,6 @@
 | **Security** | [![Security](https://github.com/glaucia86/weather-mcp-server/actions/workflows/deploy.yml/badge.svg?event=push&job=security)](https://github.com/glaucia86/weather-mcp-server/actions/workflows/deploy.yml) | Trivy vulnerability scan + npm audit |
 | **Docker** | ![Docker](https://img.shields.io/badge/Docker-Ready-blue?style=flat-square&logo=docker) | Multi-stage build otimizado |
 | **Deploy** | ![Deployment](https://img.shields.io/badge/Deploy-Automated-green?style=flat-square&logo=github-actions) | CI/CD pipeline automatizado |
-
-</div>
 
 ### 🔄 **CI/CD Pipeline**
 
@@ -123,8 +119,6 @@ O **MCP** é um protocolo desenvolvido pela Anthropic que permite ao Claude AI:
 
 ## 🏗️ **Arquitetura Clean + SOLID**
 
-<div align="center">
-
 ```mermaid
 graph TB
     subgraph "🎮 Presentation Layer"
@@ -159,8 +153,6 @@ graph TB
         N --> Q[⚡ Redis Cache]
     end
 ```
-
-</div>
 
 ### **✅ Princípios SOLID Aplicados:**
 
@@ -332,15 +324,15 @@ npm run test:manual
 
 | 🎯 **Finalidade** | 💻 **Comando** | 📋 **Descrição** |
 |:-----------------:|:--------------:|:----------------:|
-| **🚀 Start Server** | `npm start` | Servidor principal |
-| **🎮 MCP Server** | `npm run start:mcp` | Servidor MCP para Claude Desktop |
-| **🔨 Build** | `npm run build` | Compila TypeScript |
-| **🧪 Test MCP** | `npm run test:manual` | Testa servidor MCP |
-| **👨‍💻 Dev Mode** | `npm run dev` | Desenvolvimento com hot-reload |
-| **🧹 Clean** | `npm run clean` | Remove builds anteriores |
-| **🐳 Docker Up** | `npm run docker:up` | Inicia PostgreSQL + Redis |
-| **🐳 Docker Down** | `npm run docker:down` | Para containers |
-| **📊 Migrate** | `npm run migrate` | Executa migrações de banco |
+| **Start Server** | `npm start` | Servidor principal |
+| **MCP Server** | `npm run start:mcp` | Servidor MCP para Claude Desktop |
+| **Build** | `npm run build` | Compila TypeScript |
+| **Test MCP** | `npm run test:manual` | Testa servidor MCP |
+| **Dev Mode** | `npm run dev` | Desenvolvimento com hot-reload |
+| **Clean** | `npm run clean` | Remove builds anteriores |
+| **Docker Up** | `npm run docker:up` | Inicia PostgreSQL + Redis |
+| **Docker Down** | `npm run docker:down` | Para containers |
+| **Migrate** | `npm run migrate` | Executa migrações de banco |
 
 ---
 
