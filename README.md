@@ -1,14 +1,12 @@
-<!-- CI/CD Status Badges -->
-[![CI/CD Pipeline](https://github.com/glaucia86/weather-mcp-server/actions/workflows/deploy.yml/badge.svg)](https://github.com/glaucia86/weather-mcp-server/actions/workflows/deploy.yml)
-
 <!-- Project Quality Badges -->
-![GitHub release (latest by date)](https://img.shields.io/github/v/release/glaucia86/weather-mcp-server?style=flat-square&logo=github&logoColor=white)
-![GitHub issues](https://img.shields.io/github/issues/glaucia86/weather-mcp-server?style=flat-square&logo=github&logoColor=white)
-![GitHub pull requests](https://img.shields.io/github/issues-pr/glaucia86/weather-mcp-server?style=flat-square&logo=github&logoColor=white)
-![GitHub last commit](https://img.shields.io/github/last-commit/glaucia86/weather-mcp-server?style=flat-square&logo=github&logoColor=white)
-![GitHub repo size](https://img.shields.io/github/repo-size/glaucia86/weather-mcp-server?style=flat-square&logo=github&logoColor=white)
-![GitHub language count](https://img.shields.io/github/languages/count/glaucia86/weather-mcp-server?style=flat-square&logo=typescript&logoColor=white)
-![GitHub top language](https://img.shields.io/github/languages/top/glaucia86/weather-mcp-server?style=flat-square&logo=typescript&logoColor=white)
+[![GitHub release (latest by date)](https://img.shields.io/github/v/release/glaucia86/weather-mcp-server?style=flat-square&logo=github&logoColor=white)](https://github.com/glaucia86/weather-mcp-server/releases)
+[![GitHub issues](https://img.shields.io/github/issues/glaucia86/weather-mcp-server?style=flat-square&logo=github&logoColor=white)](https://github.com/glaucia86/weather-mcp-server/issues)
+[![GitHub pull requests](https://img.shields.io/github/issues-pr/glaucia86/weather-mcp-server?style=flat-square&logo=github&logoColor=white)](https://github.com/glaucia86/weather-mcp-server/pulls)
+[![GitHub last commit](https://img.shields.io/github/last-commit/glaucia86/weather-mcp-server?style=flat-square&logo=github&logoColor=white)](https://github.com/glaucia86/weather-mcp-server/commits)
+[![GitHub repo size](https://img.shields.io/github/repo-size/glaucia86/weather-mcp-server?style=flat-square&logo=github&logoColor=white)](https://github.com/glaucia86/weather-mcp-server)
+[![GitHub language count](https://img.shields.io/github/languages/count/glaucia86/weather-mcp-server?style=flat-square&logo=typescript&logoColor=white)](https://github.com/glaucia86/weather-mcp-server)
+[![GitHub top language](https://img.shields.io/github/languages/top/glaucia86/weather-mcp-server?style=flat-square&logo=typescript&logoColor=white)](https://github.com/glaucia86/weather-mcp-server)
+
 
 # 🌤️ Weather MCP Server - Clean Architecture Edition [Docker + Redis]
 
