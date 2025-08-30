@@ -1,3 +1,5 @@
+[![MseeP.ai Security Assessment Badge](https://mseep.net/pr/glaucia86-weather-mcp-server-badge.png)](https://mseep.ai/app/glaucia86-weather-mcp-server)
+
 <!-- Project Quality Badges -->
 [![GitHub release (latest by date)](https://img.shields.io/github/v/release/glaucia86/weather-mcp-server?style=flat-square&logo=github&logoColor=white)](https://github.com/glaucia86/weather-mcp-server/releases)
 [![GitHub issues](https://img.shields.io/github/issues/glaucia86/weather-mcp-server?style=flat-square&logo=github&logoColor=white)](https://github.com/glaucia86/weather-mcp-server/issues)
